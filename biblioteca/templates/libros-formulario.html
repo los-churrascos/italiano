@@ -1,0 +1,115 @@
+{% extends "master.html" %}
+{% load static %}  
+{% block titulo%}
+Formulario Libro
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block contenido %}
+
+<form method="POST">
+{%csrf_token%}
+
+    <div class="base-form">
+
+    {%if datos == ''%}
+    <h1>Crear Libro</h1>
+    <span>Titulo</span>
+    <input type="text" name="titulo" placeholder="Titulo del Libro" required>
+
+    <span>Editorial</span>
+      <select name="editorial" required>
+        {%for item in editoriales%}
+        <option value="{{item.id}}">{{item.nombre}}</option>
+        {%endfor%}
+    </select>
+
+    <span>Nombre del Autor</span>
+    <select name="autor" required>
+        {%for item in autores%}
+        <option value="{{item.id}}">{{item.nombre}} {{item.apellido}}</option>
+        {%endfor%}
+    </select>
+
+   
+    <span>Fecha de Publicación</span>
+    <input type="date" name="publicacion" required>
+
+    <span>Generos del Libro</span>
+    <div class="formulario-generos">
+        
+        {%for item in categorias%}
+        <div>
+            <p>{{item.nombre}}</p>
+            <input type="checkbox" name="categorias" value="{{item.id}}">
+        </div>
+        {%endfor%}
+        
+    </div>
+
+    <button class="boton-crear" type="submit" formaction="{% url 'libros-crear' %}">Crear Libro</button>
+
+    {%else%}
+    <input type="hidden" name="id" value="{{registro.id}}">
+ <h1>Editar Libro {{registro.titulo}}</h1>
+    <span>Titulo</span>
+    <input type="text" name="titulo" placeholder="Titulo del Libro" required value="{{registro.titulo}}">
+
+    <span>Editorial</span>
+      <select name="editorial" required>
+      <option value="{{registro.editorial.id}}" selected>{{registro.editorial.nombre}}</option>
+        {%for item in editoriales%}
+        <option value="{{item.id}}">{{item.nombre}}</option>
+        {%endfor%}
+    </select>
+
+    <span>Nombre del Autor</span>
+    <select name="autor" required>
+        <option value="{{registro.autor.id}}" selected>{{registro.autor.nombre}} {{registro.autor.apellido}}</option>
+
+        {%for item in autores%}
+        <option value="{{item.id}}">{{item.nombre}} {{item.apellido}}</option>
+        {%endfor%}
+
+    </select>
+
+   
+    <span>Fecha de Publicación</span>
+    <input type="date" name="publicacion" required value="{{registro.fecha_publicacion}}">
+
+    <span>Generos del Libro</span>
+    <div class="formulario-generos">
+        
+        {% for item in categoriasUsadas %}
+        <div>
+            <p>{{item.categorias.nombre}}</p>
+            <input type="checkbox" name="categorias" value="{{item.categorias.id}}" checked="checked">
+        </div>
+        {% endfor %}
+
+        {% for item in categorias %}
+        <div>
+            <p>{{item.nombre}}</p>
+            <input type="checkbox" name="categorias" value="{{item.id}}">
+        </div>
+        {% endfor %}
+        
+    </div>
+
+    <button class="boton-actualizar" type="submit"  formaction="{% url 'libros-modificar' %}">Actualizar datos</button>
+    <button class="boton-eliminar" type="button" onclick="alerta('{% url 'libros-eliminar' %}?id={{registro.id}}')">Eliminar Libro</button>
+
+    {%endif%}
+    
+
+    
+    
+    </div>
+
+</form>
+
+
+{% endblock %}

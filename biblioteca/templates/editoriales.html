@@ -1,0 +1,58 @@
+{% extends "master.html" %}
+{% load static %}  
+{% block titulo%}
+Buscar Editorial
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block contenido %}
+
+
+<form action="#" method="post">
+{%csrf_token%}
+<div class="BL-buscador">
+    <span>Buscar Editorial</span>
+    <div class="BL-buscador-div">
+        <span>Nombre:</span>
+        {%if datos.busqueda == ''%}
+        <input type="text" name="nombre" placeholder="Nombre de la Editorial" list="listado" autocomplete="off">
+        {%else%}
+        <input type="text" name="nombre" placeholder="Nombre de la Editorial" value ='{{datos.busqueda}}' list="listado" autocomplete="off">
+        {%endif%}
+    </div>
+    
+    <button type="submit">Buscar</button>
+</div>
+</form>
+
+<a class="submenu" href="{%url 'editoriales-formulario'%}">Nueva Editorial</a>
+
+ <datalist id="listado">
+ {%for items in all%}
+    <option value="{{items.nombre}}">{{items.nombre}}</option>
+  {%endfor%}
+  </datalist>
+
+  
+<table class="listado-de-libros" style="width: 400px;">
+  <tr>
+   
+    <th>Nombre</th>
+
+  </tr>
+
+{%for item in editoriales%}
+
+  <tr onclick="ir('{% url 'editoriales-formulario'%}?id={{item.id}}')">
+    
+    <td>{{item.nombre}}</td>
+ 
+  </tr>
+{%endfor%}
+
+</table>
+
+{% endblock %}

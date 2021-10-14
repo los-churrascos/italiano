@@ -1,0 +1,106 @@
+{% extends "master.html" %}
+{% load static %}  
+{% block titulo%}
+Buscar Libro
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block contenido %}
+<form action="#" method="post">
+{%csrf_token%}
+<div class="BL-buscador">
+    <span>Buscar libros</span>
+    <div class="BL-buscador-div">
+        <span>Titulo:</span>
+        {%if datos.titulo == ''%}
+        <input type="text" name="titulo" placeholder="Titulo del libro" list="listado-libros" autocomplete="off">
+        {%else%}
+        <input type="text" name="titulo" placeholder="Titulo del libro" value ='{{datos.titulo}}' list="listado-libros" autocomplete="off">
+        {%endif%}
+    </div>
+    <div class="BL-buscador-div">
+        <span>Autor:</span>
+
+        {%if datos.autor == ''%}
+        <input type="text" name="autor" placeholder="Autor del libro" list="listado-autores" autocomplete="off">
+        {%else%}
+        <input type="text" name="autor" placeholder="Autor del libro" value='{{datos.autor}}' list="listado-autores" autocomplete="off">
+        {%endif%}
+    </div>
+    <div class="BL-buscador-div">
+        <span>Editorial:</span>
+        {%if datos.editorial == ''%}
+        <input type="text" name="editorial" placeholder="Editorial del libro" list="listado-editoriales" autocomplete="off">
+        {%else%}
+        <input type="text" name="editorial" placeholder="Editorial del libro" value ='{{datos.editorial}}' list="listado-editoriales" autocomplete="off">
+        {%endif%}
+
+    </div>
+    <div class="BL-buscador-div">
+        <span>Buscar por fechas:</span>
+        <br>
+        <span>Desde:</span>
+        <input type="date" name="desde" value="{{datos.desde}}" required>
+        <br>
+        <span>Hasta:</span>
+        <input type="date" name="hasta" value="{{datos.hasta}}" required>
+    </div>
+    <button type="submit">Buscar</button>
+</div>
+</form>
+
+<a class="submenu" href="{% url 'libros-formulario' %}">Nuevo Libro</a>
+
+ <datalist id="listado-libros">
+ {%for items in todoslibros%}
+    <option value="{{items.titulo}}">{{items.titulo}}</option>
+  {%endfor%}
+  </datalist>
+
+  <datalist id="listado-autores">
+ {%for items in todosautores%}
+    <option value="{{items.nombre}}">{{items.nombre}}</option>
+  {%endfor%}
+  </datalist>
+
+  <datalist id="listado-editoriales">
+ {%for items in todoseditorial%}
+    <option value="{{items.nombre}}">{{items.nombre}}</option>
+  {%endfor%}
+  </datalist>
+
+  
+
+
+
+<table class="listado-de-libros">
+  <tr>
+    <th>Titulo</th>
+    <th>Autor</th>
+    <th>Editorial</th>
+    <th>Generos</th>
+     <th>Año publicacion</th>
+  </tr>
+
+{%for item in libros%}
+
+  <tr onclick="ir('{% url 'libros-formulario'%}?id={{item.id}}')">
+    <td>{{item.titulo}}</td>
+    <td>{{item.autor.nombre}} {{item.autor.apellido}}</td>
+    <td>{{item.editorial.nombre}}</td>
+    <td>
+    {%for data in item.cat%}
+      {{data.categorias.nombre}}
+    {%endfor%}
+    
+    </td>
+    <td>{{item.fecha_publicacion}}</td>
+  </tr>
+{%endfor%}
+
+</table>
+
+{% endblock %}

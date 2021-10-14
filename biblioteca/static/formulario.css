@@ -1,0 +1,114 @@
+.base-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.base-form h1 {
+  font-size: 30px;
+}
+
+.base-form span {
+  font-size: 18px;
+}
+
+.base-form input {
+  width: 300px;
+  height: 20px;
+  padding: 8px;
+  text-indent: 5px;
+}
+
+.base-form select {
+  width: 320px;
+  height: 40px;
+  padding: 8px;
+  text-indent: 5px;
+}
+
+.base-form .boton-crear, .base-form .boton-actualizar, .base-form .boton-eliminar {
+  min-width: 150px;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  height: 30px;
+  padding: 5px;
+  background-color: #b0ffa9;
+  color: #222;
+  margin-top: 20px;
+  border: 0px solid white;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 100ms;
+  transition: -webkit-transform 100ms;
+  transition: transform 100ms;
+  transition: transform 100ms, -webkit-transform 100ms;
+}
+
+.base-form .boton-crear:hover, .base-form .boton-actualizar:hover, .base-form .boton-eliminar:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.base-form .boton-actualizar {
+  background-color: #1874b1;
+  color: white;
+}
+
+.base-form .boton-eliminar {
+  background-color: #a00000;
+  color: white;
+}
+
+.base-form .formulario-generos {
+  width: 450px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.base-form .formulario-generos div {
+  width: 300px;
+  height: 30px;
+  margin-right: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 80px;
+}
+
+.base-form .formulario-generos div p {
+  text-align: center;
+  height: 40px;
+}
+
+.base-form .formulario-generos div input[type=checkbox] {
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+  width: 40px;
+}
+/*# sourceMappingURL=formulario.css.map */

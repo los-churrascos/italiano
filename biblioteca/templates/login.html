@@ -1,0 +1,37 @@
+{% load static %}  
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+  <title>
+    SEGAB - Login
+  </title>
+
+  <link rel="stylesheet" href="{% static 'login.css' %}">
+
+</head>
+
+<body>
+
+<div class="login">
+
+    <form method="POST" action="{% url 'comprobarLogin' %}">
+    {% csrf_token %}
+        <h1>Inicio de Sesión SEGAB</h1>
+
+    
+        <input type="text" name="usuario" placeholder="Nombre de usuario"  required autocomplete="off">
+        <input type="password" name="pass" placeholder="Contraseña" required autocomplete="off">
+
+        <button class="boton1" type="submit">Iniciar Sesión</button>
+
+    </form>
+    
+
+</div>
+
+
+</body>
+</html>

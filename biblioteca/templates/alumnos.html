@@ -1,0 +1,61 @@
+{% extends "master.html" %}
+{% load static %}  
+{% block titulo%}
+Buscar Alumnos
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block contenido %}
+
+
+<form action="#" method="post">
+{%csrf_token%}
+<div class="BL-buscador">
+    <span>Buscar Alumno</span>
+    <div class="BL-buscador-div">
+        <span>Nombre o apellido:</span>
+        {%if datos.busqueda == ''%}
+        <input type="text" name="nombre" placeholder="Nombre o Apellido del alumno" list="listado-alumnos" autocomplete="off">
+        {%else%}
+        <input type="text" name="nombre" placeholder="Nombre o Apellido del alumno" value ='{{datos.busqueda}}' list="listado-alumnos" autocomplete="off">
+        {%endif%}
+    </div>
+    
+    <button type="submit">Buscar</button>
+</div>
+</form>
+
+<a class="submenu" href="{%url 'alumnos-formulario'%}">Nuevo Alumno</a>
+
+ <datalist id="listado-alumnos">
+ {%for items in todosalumnos%}
+    <option value="{{items.nombre}}">{{items.nombre}}</option>
+    <option value="{{items.apellido}}">{{items.apellido}}</option>
+  {%endfor%}
+  </datalist>
+
+  
+<table class="listado-de-libros" style="width: 750px;">
+  <tr>
+    <th>Rut</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+     <th>Curso</th>
+  </tr>
+
+{%for item in alumnos%}
+
+  <tr onclick="ir('{% url 'alumnos-formulario'%}?id={{item.id}}')">
+    <td>{{item.rut}}</td>
+    <td>{{item.nombre}}</td>
+    <td>{{item.apellido}}</td>
+    <td>{{item.curso}}</td>
+  </tr>
+{%endfor%}
+
+</table>
+
+{% endblock %}

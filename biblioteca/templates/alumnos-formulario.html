@@ -1,0 +1,56 @@
+{% extends "master.html" %}
+{% load static %}  
+{% block titulo%}
+Listado Categorias
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block contenido %}
+
+<form method="POST">
+{%csrf_token%}
+
+    <div class="base-form">
+
+    {%if datos == ''%}
+    <h1>Crear Alumno</h1>
+    <span>Rut del alumno</span>
+    <input type="text" name="rut" placeholder="Rut del alumno" required>
+    <span>Nombre del alumno</span>
+    <input type="text" name="nombre" placeholder="Nombres del alumno" required>
+    <span>Apellido del alumno</span>
+    <input type="text" name="apellido" placeholder="Apellidos del alumno" required>
+    <span>Curso del alumno</span>
+    <input type="text" name="curso" placeholder="Curso del alumno" required>
+
+    <button class="boton-crear" type="submit" formaction="{% url 'alumnos-crear' %}">Crear Alumno</button>
+
+    {%else%}
+    <input type="hidden" name="id" value="{{registro.id}}">
+    <h1>Modificar Alumno: {{registro.nombre}} {{registro.apellido}}</h1>
+    <span>Rut del alumno</span>
+    <input type="text" name="rut" placeholder="Rut del alumno" required value="{{registro.rut}}">
+    <span>Nombre del alumno</span>
+    <input type="text" name="nombre" placeholder="Nombres del alumno" required value="{{registro.nombre}}">
+    <span>Apellido del alumno</span>
+    <input type="text" name="apellido" placeholder="apellidos del alumno" required value="{{registro.apellido}}">
+    <span>Curso del alumno</span>
+    <input type="text" name="curso" placeholder="Curso del alumno" required value="{{registro.curso}}">
+
+    <button class="boton-actualizar" type="submit"  formaction="{% url 'alumnos-modificar' %}">Actualizar datos</button>
+    <button class="boton-eliminar" type="button" onclick="alerta('{% url 'alumnos-eliminar' %}?id={{registro.id}}')">Eliminar Libro</button>
+
+    {%endif%}
+    
+
+    
+    
+    </div>
+
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,92 @@
+.BL-buscador {
+  width: 380px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 20px;
+  border: 1px solid #222;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.BL-buscador span {
+  font-size: 22px;
+}
+
+.BL-buscador .BL-buscador-div {
+  margin-top: 10px;
+}
+
+.BL-buscador .BL-buscador-div span {
+  font-size: 15px;
+}
+
+.BL-buscador button {
+  margin-top: 15px;
+  width: 150px;
+  height: 30px;
+  background-color: #5231ca;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border: 0px solid #ccc;
+}
+
+.listado-de-libros {
+  width: 90%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: 1px solid #222;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border-collapse: collapse;
+  max-height: 500;
+  overflow-y: scroll;
+}
+
+.listado-de-libros th, .listado-de-libros td {
+  border: 1px solid black;
+}
+
+.listado-de-libros th {
+  height: 10px !important;
+}
+
+.listado-de-libros td {
+  text-align: center;
+}
+
+.listado-de-libros tr:first-child:hover {
+  background-color: white;
+  cursor: default;
+}
+
+.listado-de-libros tr:hover {
+  background-color: #f0dcfd;
+  cursor: pointer;
+}
+
+.submenu {
+  position: relative;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 30px;
+  padding: 8px;
+  background-color: #57e4a9;
+  color: #222;
+  text-decoration: none;
+}
+
+.submenu:hover {
+  background-color: #067040;
+  color: white;
+}
+/*# sourceMappingURL=buscar-libro.css.map */

@@ -1,0 +1,90 @@
+.BL-buscador{
+
+    width: 380px;
+    height: fit-content;
+    padding: 20px;
+    border: 1px solid #222;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+
+    span{
+        font-size:22px;
+    }
+    .BL-buscador-div{
+        margin-top: 10px;
+
+        span{
+            font-size:15px;
+        }
+    }
+
+    button{
+        margin-top: 15px;
+        width: 150px;
+        height: 30px;
+
+        background-color: rgb(82, 49, 202);
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+        border: 0px solid #ccc;
+    }
+}
+
+.listado-de-libros{
+
+    width: 90%;
+    height:fit-content;
+    border: 1px solid #222;
+    margin-top: 25px;
+    margin-bottom:25px;
+    border-collapse: collapse;
+
+    max-height: 500;
+    overflow-y: scroll;
+    
+    th, td {
+
+        border: 1px solid black;
+    }
+
+    th{
+        height:10px !important;
+       
+    }
+    td {
+        text-align: center;
+      }
+    
+    tr:first-child:hover{
+        background-color: white;
+        cursor:default;
+    }
+    tr:hover{
+        background-color:rgb(240, 220, 253);
+        cursor:pointer;
+    }
+
+
+
+}
+
+.submenu{
+    position: relative;
+    width: fit-content;
+    height:30px;
+    padding:8px;
+    background-color: rgb(87, 228, 169);
+    color: #222;
+    
+    text-decoration: none;
+  
+
+
+}
+.submenu:hover{
+
+    background-color:rgb(6, 112, 64);
+    color: white;
+}

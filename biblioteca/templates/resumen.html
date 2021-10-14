@@ -1,0 +1,55 @@
+{% extends "master.html" %}
+{% load static %}  
+{% block titulo%}
+Resumen
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block contenido %}
+<div class="contenedor-resumen">
+  <div class="resumen">
+    <h1>Resumen de inventario</h1>
+    <span>Libros totales en inventario: {{datos.librosTotales}}</span>
+    <span>Libros totales prestados: {{datos.librosPrestados}}</span>
+    <span>Alumnos con prestamos: {{datos.alumnosConPrestamos}}</span>
+    <span>Prestamos pendientes: {{datos.prestamosPendientes}}</span>
+  </div>
+  <div class="normal">
+    <h1>Prestamos por Vencer</h1>
+    <table class="tabla-resumen"
+      <tr>
+        <th>Vencimiento</th>
+        <th>Estudiante</th>
+        <th>Libro</th>
+      </tr>
+  {% for item in datos.prestamosPorTerminar %}
+      <tr onclick="ir('{% url 'prestamos-formulario-recepcion'%}?id={{item.id}}')">
+        <td>{{item.fechaDevolcion}}</td>
+        <td>{{item.idEstudiante.nombre}} {{item.idEstudiante.apellido}}</td>
+        <td>{{item.idLibro.titulo}}</td>
+      </tr>
+  {%endfor %}
+  </table>
+  </div>
+   <div class="normal">
+   <h1>Prestamos Pendientes</h1>
+    <table class="tabla-resumen"
+      <tr>
+        <th>Vencimiento</th>
+        <th>Estudiante</th>
+        <th>Libro</th>
+      </tr>
+  {% for item in datos.prestamosPendientes2 %}
+      <tr onclick="ir('{% url 'prestamos-formulario-recepcion'%}?id={{item.id}}')">
+        <td>{{item.fechaDevolcion}}</td>
+        <td>{{item.idEstudiante.nombre}} {{item.idEstudiante.apellido}}</td>
+        <td>{{item.idLibro.titulo}}</td>
+      </tr>
+  {%endfor %}
+  </table>
+  </div>
+</div>
+{% endblock %}

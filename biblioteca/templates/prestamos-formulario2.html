@@ -1,0 +1,93 @@
+{% extends "master.html" %}
+{% load static %}  
+{% block titulo%}
+Formulario Prestamos
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block contenido %}
+
+<form method="POST">
+{%csrf_token%}
+    
+    <div class="base-form">
+
+    
+    <h1>Ingresar Prestamo - Seleccionar Libro</h1>
+
+    <span>Paso 2:Seleccionar Libro</span>
+    
+    <div class="BL-buscador-div">
+        <span>Titulo del libro:</span>
+        {%if datos.busqueda == ''%}
+        <input type="text" name="titulo" placeholder="Titulo del libro" list="listado-libros" autocomplete="off">
+        {%else%}
+        <input type="text" name="titulo" placeholder="Titulo del libro" value ='{{datos.titulo}}' list="listado-libros" autocomplete="off">
+        {%endif%}
+
+        
+    </div>
+
+    <div class="BL-buscador-div">
+        <span>Nombre o Apellido del Autor:</span>
+        {%if datos.busqueda == ''%}
+        <input type="text" name="nombre" placeholder="Nombre o Apellido del alumno" list="listado-autores" autocomplete="off">
+        {%else%}
+        <input type="text" name="nombre" placeholder="Nombre o Apellido del alumno" value ='{{datos.autor}}' list="listado-autores" autocomplete="off">
+        {%endif%}
+
+        
+    </div>
+    <button class="boton-crear" type="submit" formaction="{% url 'prestamos-formulario2' %}?id={{datos.idAlumno}}">Filtrar</button>
+    
+        <datalist id="listado-autores">
+    {%for items in todosautores%}
+        <option value="{{items.nombre}}">{{items.nombre}}</option>
+        <option value="{{items.apellido}}">{{items.apellido}}</option>
+    {%endfor%}
+    </datalist>
+
+           <datalist id="listado-libros">
+    {%for items in todoslibros%}
+        <option value="{{items.titulo}}">{{items.titulo}}</option>
+
+    {%endfor%}
+    </datalist>
+
+    
+ <table class="listado-de-libros">
+  <tr>
+    <th>Titulo</th>
+    <th>Autor</th>
+    <th>Editorial</th>
+     <th>Año publicacion</th>
+  </tr>
+
+{%for item in libros%}
+
+  <tr onclick="ir('{% url 'prestamos-formulario3'%}?idLibro={{item.id}}&idAlumno={{datos.idAlumno}}')">
+    <td>{{item.titulo}}</td>
+    <td>{{item.autor.nombre}} {{item.autor.apellido}}</td>
+    <td>{{item.editorial.nombre}}</td>
+    <td>{{item.fecha_publicacion}}</td>
+  </tr>
+{%endfor%}
+
+</table>
+
+
+
+
+    
+
+    
+    
+    </div>
+
+</form>
+
+
+{% endblock %}

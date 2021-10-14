@@ -1,0 +1,57 @@
+{% load static %}  
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+  <title>
+    SEGAB - 
+    {% block titulo %}
+    {% endblock %}
+  </title>
+
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+  <link rel="stylesheet" href="{% static 'formulario.css' %}">
+<link rel="stylesheet" href="{% static 'buscar-libro.css' %}">
+<link rel="stylesheet" href="{% static 'resumen.css' %}">
+{% block header %}
+{% endblock %}
+
+<script>
+
+function ir(url){
+  window.location.href = (url);
+}
+
+function alerta(url) {
+
+if (window.confirm("Desea Eliminar este elemento?, esto podria afectar a registros que dependan de este.")) {
+ 
+  window.location.href = (url);
+}
+ 
+}
+
+</script>
+</head>
+
+<body>
+    {%block menu%}
+    {% include 'menu.html' %}
+    {%endblock %}
+
+    <div class="contenido">
+
+        {% block contenido %}
+        {% endblock %}
+
+    </div>
+
+
+    <div class="footer">
+        <span>©2021 SEGAB - Creado por grupo 9 - PRO202-9001-2021- TALLER DE BASES DE DATOS</span>
+    </div>
+
+</body>
+</html>

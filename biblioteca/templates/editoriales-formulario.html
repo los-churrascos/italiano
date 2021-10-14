@@ -1,0 +1,48 @@
+{% extends "master.html" %}
+{% load static %}  
+{% block titulo%}
+Editorial
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block contenido %}
+
+<form method="POST">
+{%csrf_token%}
+
+    <div class="base-form">
+
+    {%if datos == ''%}
+    <h1>Crear Editorial</h1>
+
+    <span>Nombre de la Editorial</span>
+    <input type="text" name="nombre" placeholder="Nombre de la Editorial" required>
+
+
+    <button class="boton-crear" type="submit" formaction="{% url 'editoriales-crear' %}">Crear Editorial</button>
+
+    {%else%}
+    <input type="hidden" name="id" value="{{registro.id}}">
+    <h1>Modificar Editorial: {{registro.nombre}}</h1>
+    
+    <span>Nombre de la Editorial</span>
+    <input type="text" name="nombre" placeholder="Nombre de la Editorial" required value="{{registro.nombre}}">
+ 
+
+    <button class="boton-actualizar" type="submit"  formaction="{% url 'editoriales-modificar' %}">Actualizar datos</button>
+    <button class="boton-eliminar" type="button" onclick="alerta('{% url 'editoriales-eliminar' %}?id={{registro.id}}')">Eliminar Libro</button>
+
+    {%endif%}
+    
+
+    
+    
+    </div>
+
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "master.html" %}
+{% load static %}  
+{% block titulo%}
+Buscar Autores
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block contenido %}
+
+
+<form action="#" method="post">
+{%csrf_token%}
+<div class="BL-buscador">
+    <span>Buscar Autor</span>
+    <div class="BL-buscador-div">
+        <span>Nombre o apellido:</span>
+        {%if datos.busqueda == ''%}
+        <input type="text" name="nombre" placeholder="Nombre o Apellido del autor" list="listado" autocomplete="off">
+        {%else%}
+        <input type="text" name="nombre" placeholder="Nombre o Apellido del autor" value ='{{datos.busqueda}}' list="listado" autocomplete="off">
+        {%endif%}
+    </div>
+    
+    <button type="submit">Buscar</button>
+</div>
+</form>
+
+<a class="submenu" href="{%url 'autores-formulario'%}">Nuevo Autor</a>
+
+ <datalist id="listado">
+ {%for items in all%}
+    <option value="{{items.nombre}}">{{items.nombre}}</option>
+    <option value="{{items.apellido}}">{{items.apellido}}</option>
+  {%endfor%}
+  </datalist>
+
+  
+<table class="listado-de-libros" style="width: 700px;">
+
+  <tr>
+    
+    <th>Nombre</th>
+    <th>Apellido</th>
+     <th>Nacionalidad</th>
+  </tr>
+
+{%for item in autores%}
+
+  <tr onclick="ir('{% url 'autores-formulario'%}?id={{item.id}}')">
+  
+    <td>{{item.nombre}}</td>
+    <td>{{item.apellido}}</td>
+    <td>{{item.nacionalidad}}</td>
+  </tr>
+{%endfor%}
+
+</table>
+
+{% endblock %}

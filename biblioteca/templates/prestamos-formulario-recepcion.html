@@ -1,0 +1,40 @@
+{% extends "master.html" %}
+{% load static %}  
+{% block titulo%}
+Formulario Prestamos Recepción
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block contenido %}
+
+<form method="POST">
+{%csrf_token%}
+    <input type="hidden" name="id" value="{{prestamos.id}}">
+  
+    <div class="base-form">
+
+    
+    <h1>Recepción de Prestamo</h1>
+    
+        <span>Estudiante:</span>
+        <input type="text" name="estudiante" value="{{prestamos.idEstudiante.nombre}} {{prestamos.idEstudiante.apellido}}" readonly>
+        <span>Libro solicitado:</span>
+        <input type="text" name="libro" value="{{prestamos.idLibro.titulo}} - {{prestamos.idLibro.autor.nombre}} {{prestamos.idLibro.autor.apellido}}" readonly>
+        <span>Estado:</span>
+        <input type="text" name="estado" value="{{prestamos.estado}}" readonly>
+
+    {%if prestamos.estado == 'En curso' or prestamos.estado == 'Atrasado' %}
+    <button class="boton-crear" type="submit" formaction="{% url 'prestamos-modificar' %}">Confirmar Recepción del Libro</button>
+    {%else%}
+
+    {%endif%}
+    
+    </div>
+
+</form>
+
+
+{% endblock %}

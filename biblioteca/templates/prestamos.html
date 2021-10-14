@@ -1,0 +1,117 @@
+{% extends "master.html" %}
+{% load static %}  
+{% block titulo%}
+Prestamos
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block contenido %}
+<form action="#" method="post">
+{%csrf_token%}
+<div class="BL-buscador">
+    <span>Buscar Prestamo</span>
+
+     <div class="BL-buscador-div">
+        <span>Nombre o Apellido:</span>
+        {%if datos.editorial == ''%}
+        <input type="text" name="nombre" placeholder="Nombre o Apellido del alumno" list="listado-alumnos" autocomplete="off">
+        {%else%}
+        <input type="text" name="nombre" placeholder="Nombre o Apellido del alumno" value ='{{datos.alumno}}' list="listado-alumnos" autocomplete="off">
+        {%endif%}
+
+    </div>
+    <div class="BL-buscador-div">
+        <span>Titulo:</span>
+        {%if datos.titulo == ''%}
+        <input type="text" name="titulo" placeholder="Titulo del libro" list="listado-libros" autocomplete="off">
+        {%else%}
+        <input type="text" name="titulo" placeholder="Titulo del libro" value ='{{datos.titulo}}' list="listado-libros" autocomplete="off">
+        {%endif%}
+    </div>
+    <div class="BL-buscador-div">
+        <span>Autor:</span>
+
+        {%if datos.autor == ''%}
+        <input type="text" name="autor" placeholder="Autor del libro" list="listado-autores" autocomplete="off">
+        {%else%}
+        <input type="text" name="autor" placeholder="Autor del libro" value='{{datos.autor}}' list="listado-autores" autocomplete="off">
+        {%endif%}
+    </div>
+   
+       <div class="BL-buscador-div">
+        <span>Estado libro:</span>
+
+        <select name="estado">
+          <option value="" selected>Todos</option>
+          <option value="Completado">Completado</option>
+          <option value="En curso">En curso</option>
+          <option value="Atrasado">Atrasado</option>
+        </select>
+    
+    </div>
+    <button type="submit">Buscar</button>
+</div>
+</form>
+
+<a class="submenu" href="{% url 'prestamos-formulario' %}">Nuevo Prestamo</a>
+
+ <datalist id="listado-libros">
+ {%for items in todoslibros%}
+    <option value="{{items.titulo}}">{{items.titulo}}</option>
+  {%endfor%}
+  </datalist>
+
+  <datalist id="listado-autores">
+ {%for items in todosautores%}
+    <option value="{{items.nombre}}">{{items.nombre}}</option>
+    <option value="{{items.apellido}}">{{items.apellido}}</option>
+  {%endfor%}
+  </datalist>
+
+  <datalist id="listado-alumnos">
+ {%for items in todosalumnos%}
+    <option value="{{items.nombre}}">{{items.nombre}}</option>
+    <option value="{{items.apellido}}">{{items.apellido}}</option>
+  {%endfor%}
+  </datalist>
+
+  
+
+
+
+<table class="listado-de-libros">
+  <tr>
+    <th>R.U.N</th>
+    <th>Nombres</th>
+    <th>Curso</th>
+    <th>Libro solicitado</th>
+    <th>Autor</th>
+    <th>Fecha solicitud</th>
+    <th>Fecha de devolución</th>
+    <th>Estado</th>
+  </tr>
+
+{%for item in prestamos%}
+
+  <tr onclick="ir('{% url 'prestamos-formulario-recepcion'%}?id={{item.id}}')"
+  {%if item.estado == 'Atrasado' %}
+  style=" background-color: rgb(255, 172, 158);"
+  {%endif%}
+  >
+    <td>{{item.idEstudiante.rut}}</td>
+    <td>{{item.idEstudiante.nombre}} {{item.idEstudiante.apellido}}</td>
+    <td>{{item.idEstudiante.curso}}</td>
+    <td>{{item.idLibro.titulo}}</td>
+    <td>{{item.idLibro.autor.nombre}} {{item.idLibro.autor.apellido}}</td>
+    <td>{{item.fechaPrestamo}}</td>
+    <td>{{item.fechaDevolcion}}</td>
+    <td>{{item.estado}}</td>
+  </tr>
+{%endfor%}
+
+</table>
+
+{% endblock %}

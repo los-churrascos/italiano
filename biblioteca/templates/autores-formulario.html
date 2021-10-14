@@ -1,0 +1,54 @@
+{% extends "master.html" %}
+{% load static %}  
+{% block titulo%}
+Autor
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block contenido %}
+
+<form method="POST">
+{%csrf_token%}
+
+    <div class="base-form">
+
+    {%if datos == ''%}
+    <h1>Crear Autor</h1>
+ 
+    <span>Nombre del Autor</span>
+    <input type="text" name="nombre" placeholder="Nombres del Autor" required>
+    <span>Apellido del Autor</span>
+    <input type="text" name="apellido" placeholder="Apellidos del Autor" required>
+    <span>Nacionalidad</span>
+    <input type="text" name="nacionalidad" placeholder="Nacionalidad" required>
+
+    <button class="boton-crear" type="submit" formaction="{% url 'autores-crear' %}">Crear Autor</button>
+
+    {%else%}
+    <input type="hidden" name="id" value="{{registro.id}}">
+    <h1>Modificar Autor: {{registro.nombre}} {{registro.apellido}}</h1>
+
+    <span>Nombre del Autor</span>
+    <input type="text" name="nombre" placeholder="Nombres del Autor" required value="{{registro.nombre}}">
+    <span>Apellido del Autor</span>
+    <input type="text" name="apellido" placeholder="Apellidos del Autor" required value="{{registro.apellido}}">
+    <span>Nacionalidad</span>
+    <input type="text" name="nacionalidad" placeholder="Nacionalidad" required value="{{registro.nacionalidad}}">
+
+    <button class="boton-actualizar" type="submit"  formaction="{% url 'autores-modificar' %}">Actualizar datos</button>
+    <button class="boton-eliminar" type="button" onclick="alerta('{% url 'autores-eliminar' %}?id={{registro.id}}')">Eliminar Libro</button>
+
+    {%endif%}
+    
+
+    
+    
+    </div>
+
+</form>
+
+
+{% endblock %}

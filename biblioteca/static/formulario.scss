@@ -1,0 +1,96 @@
+.base-form{
+
+    display: flex;
+    flex-direction: column;
+
+
+    align-items: center;
+
+    h1{
+        font-size: 30px;
+    }
+
+    span{
+        font-size:18px;
+    }
+
+    input{
+        width: 300px;
+        height:20px;
+        padding: 8px;
+        text-indent: 5px;
+    }
+    select{
+        width: 320px;
+        height:40px;
+        padding: 8px;
+        text-indent: 5px;
+    }
+
+    .boton-crear{
+
+        min-width: 150px;
+        max-width: fit-content;
+        height:30px;
+        padding: 5px;
+        background-color: rgb(176, 255, 169);
+        color: #222;
+        margin-top:20px;
+        border: 0px solid white;
+        cursor: pointer;
+        transition: transform 100ms;
+
+    }
+    .boton-crear:hover{
+        transform:scale(1.1);
+        
+    }
+
+    .boton-actualizar{
+        @extend .boton-crear;
+        background-color: rgb(24, 116, 177);
+        color: white;
+    }
+
+    .boton-eliminar{
+        @extend .boton-crear;
+        background-color: rgb(160, 0, 0);
+        color: white;
+    }
+
+    .formulario-generos{
+
+        width: 450px;
+        height: fit-content;
+        display:flex;
+        flex-direction:column;
+        margin-top:20px;
+        
+    
+        justify-content: center;
+
+        div{
+           
+            width:300px;
+            height:30px;
+            margin-right: 10px;
+            display: flex;
+            flex-direction:row;
+
+            align-items: center;
+            margin-left: 80px;
+            
+
+            p{
+                text-align: center;
+                height: 40px;
+            }
+            input[type=checkbox]{
+
+                transform: translateY(-10px);
+                width: 40px;
+            
+            }
+        }
+    }
+}

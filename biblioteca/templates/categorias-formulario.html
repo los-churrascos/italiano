@@ -1,0 +1,48 @@
+{% extends "master.html" %}
+{% load static %}  
+{% block titulo%}
+Categoria
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block contenido %}
+
+<form method="POST">
+{%csrf_token%}
+
+    <div class="base-form">
+
+    {%if datos == ''%}
+    <h1>Crear Categoria</h1>
+
+    <span>Nombre de la categoria</span>
+    <input type="text" name="nombre" placeholder="Nombre de la categoria" required>
+
+
+    <button class="boton-crear" type="submit" formaction="{% url 'categorias-crear' %}">Crear Categoria</button>
+
+    {%else%}
+    <input type="hidden" name="id" value="{{registro.id}}">
+    <h1>Modificar Categoria: {{registro.nombre}}</h1>
+    
+    <span>Nombre de la categoria</span>
+    <input type="text" name="nombre" placeholder="Nombre de la categoria" required value="{{registro.nombre}}">
+ 
+
+    <button class="boton-actualizar" type="submit"  formaction="{% url 'categorias-modificar' %}">Actualizar datos</button>
+    <button class="boton-eliminar" type="button" onclick="alerta('{% url 'categorias-eliminar' %}?id={{registro.id}}')">Eliminar Libro</button>
+
+    {%endif%}
+    
+
+    
+    
+    </div>
+
+</form>
+
+
+{% endblock %}
